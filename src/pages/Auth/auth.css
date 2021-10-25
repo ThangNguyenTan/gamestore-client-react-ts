@@ -1,0 +1,14 @@
+.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    width: 100%;
+    flex: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.auth-page div {
+    width: 100%;
+}
