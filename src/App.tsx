@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import { ToastContainer } from 'react-toastify'
 import { NavigationBar } from './components'
-import { SignUpPage, SignInPage } from './pages'
+import { SignUpPage, SignInPage, BrowsePage } from './pages'
 
 const App: React.FC = () => {
     return (
@@ -16,7 +16,7 @@ const App: React.FC = () => {
                 <main>
                     <Container>
                         <Switch>
-                            <Route exact path="/" component={() => <></>} />
+                            <Route exact path="/" component={BrowsePage} />
                             <Route
                                 exact
                                 path="/signup"
@@ -29,17 +29,7 @@ const App: React.FC = () => {
                             />
                         </Switch>
                     </Container>
-                    <ToastContainer
-                        position="bottom-right"
-                        autoClose={5000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                    />
+                    <ToastContainer />
                 </main>
             </Router>
         </div>

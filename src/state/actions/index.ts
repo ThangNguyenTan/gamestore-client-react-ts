@@ -1,3 +1,6 @@
 export * from './bankActions'
 export * from './todoActions'
 export * from './authActions'
+export * from './genreActions'
+export * from './featureActions'
+export * from './gameActions'

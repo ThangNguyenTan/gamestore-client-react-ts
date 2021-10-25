@@ -154,14 +154,14 @@ const SignUpPage: FC = () => {
 
                             <button
                                 type="submit"
-                                className="btn btn-info btn-block"
+                                className="btn btn-primary btn-block"
                             >
                                 Signup
                             </button>
 
                             <Link
                                 to="/signin"
-                                className="btn btn-outline-info btn-block"
+                                className="btn btn-outline-primary btn-block"
                             >
                                 Already have an account?
                             </Link>
