@@ -6,8 +6,9 @@ import {
     getErrorMessageFromResponse,
     createAuthorizedRequestHeader,
     generateFindGamesURL,
+    singleGameURL,
 } from '../../utils'
-import { IFindGameList } from '../../interfaces'
+import { IFindGameList, IFindGameItem } from '../../interfaces'
 import { RootState } from '../reducers'
 
 export const findGames = (
@@ -59,6 +60,42 @@ export const findGames = (
         } catch (error: any) {
             dispatch({
                 type: GameActionType.FIND_GAMES_FAIL,
+                payload: getErrorMessageFromResponse(error),
+            })
+        }
+    }
+}
+
+export const getGame = (id: string | number) => {
+    return async (
+        dispatch: Dispatch<GameAction>,
+        getState: () => RootState
+    ): Promise<void> => {
+        dispatch({
+            type: GameActionType.GET_GAME_REQUEST,
+        })
+
+        try {
+            const { authReducer } = getState()
+            const { currentUser } = authReducer
+
+            const res: AxiosResponse<IFindGameItem> = await axios.get(
+                `${singleGameURL(id)}`,
+                {
+                    headers: {
+                        Authorization: createAuthorizedRequestHeader(
+                            currentUser
+                        ),
+                    },
+                }
+            )
+            dispatch({
+                type: GameActionType.GET_GAME_SUCCESS,
+                payload: res.data,
+            })
+        } catch (error: any) {
+            dispatch({
+                type: GameActionType.GET_GAME_FAIL,
                 payload: getErrorMessageFromResponse(error),
             })
         }

@@ -62,6 +62,13 @@ export interface IFindGameItem extends IGame {
 
 export type IFindGameList = IFindGameItem[]
 
+export interface ICartItem extends IFindGameItem {
+    quantity: number
+    subTotal: number
+}
+
+export type ICartList = ICartItem[]
+
 export type IDeveloper = {
     id?: number
     developerName: string
@@ -74,4 +81,19 @@ export type IPublisher = {
     publisherName: string
     createdAt?: string
     updatedAt?: string
+}
+
+export type IOrder = {
+    id?: number
+    GameInstance: IGame
+    createdAt?: string
+    updatedAt?: string
+}
+
+export type IOrderList = IOrder[]
+
+declare global {
+    interface Window {
+        paypal: boolean
+    }
 }

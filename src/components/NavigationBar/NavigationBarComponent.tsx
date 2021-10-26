@@ -1,8 +1,12 @@
 import React, { FC } from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { RootState } from '../../state/reducers'
 
 const NavigationBarComponent: FC = () => {
+    const { currentUser } = useSelector((state: RootState) => state.authReducer)
+
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
@@ -13,15 +17,25 @@ const NavigationBarComponent: FC = () => {
                     <Link className="nav-link" to="/">
                         Home
                     </Link>
-                    <Link className="nav-link" to="/signin">
-                        Sign In
-                    </Link>
-                    <Link className="nav-link" to="/signup">
-                        Sign Up
-                    </Link>
-                    <Link className="nav-link" to="/profile">
-                        Profile
-                    </Link>
+                    {currentUser ? (
+                        <>
+                            <Link className="nav-link" to="/library">
+                                Library
+                            </Link>
+                            <Link className="nav-link text-danger" to="/logout">
+                                Logout
+                            </Link>
+                        </>
+                    ) : (
+                        <>
+                            <Link className="nav-link" to="/signin">
+                                Sign In
+                            </Link>
+                            <Link className="nav-link" to="/signup">
+                                Sign Up
+                            </Link>
+                        </>
+                    )}
                 </Nav>
             </Container>
         </Navbar>

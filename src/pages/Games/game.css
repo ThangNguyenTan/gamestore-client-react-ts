@@ -1,0 +1,41 @@
+.game-details__description p {
+    font-size: 1rem;
+    color: #fff;
+}
+
+.game-details__genre-feature .row div {
+    border-left: 1px solid #3a3a3a;
+}
+
+.game-details__genre-feature .row div:first-child {
+   transform: translateX(18px);
+}
+
+.game-details__genre-feature p {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.game-details__genre-feature a {
+    text-decoration: underline;
+    color: #fff;
+}
+
+.game-details__genre-feature a:hover {
+    text-decoration: none;
+}
+
+.game-details__meta ul li {
+    border-bottom: 1px solid #3a3a3a;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.game-details__meta ul li span:first-child {
+    font-weight: 600;
+}
+
+.game-details__meta ul li span:last-child {
+    color: #fff;
+}

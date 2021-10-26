@@ -51,6 +51,10 @@
     border-radius: 5px;
 }
 
+.game-item__poster.library {
+    height: 350px;
+}
+
 .game-item__poster::after {
     content: "";
     position: absolute;
@@ -77,6 +81,10 @@
     text-overflow: ellipsis;
     text-decoration: none;
     color: #FFF;
+}
+
+.game-item__name.library {
+    font-size: 1.2rem;
 }
 
 .game-item__meta {

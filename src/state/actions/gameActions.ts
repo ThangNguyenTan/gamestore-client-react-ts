@@ -1,5 +1,5 @@
 import { GameActionType } from '../action-types'
-import { IFindGameList } from '../../interfaces'
+import { IFindGameList, IFindGameItem } from '../../interfaces'
 
 interface GetAllGamesRequestAction {
     type: GameActionType.FIND_GAMES_REQUEST
@@ -18,7 +18,22 @@ interface GetAllGamesFailAction {
     payload: string
 }
 
+interface GetGameRequestAction {
+    type: GameActionType.GET_GAME_REQUEST
+}
+interface GetGameSuccessAction {
+    type: GameActionType.GET_GAME_SUCCESS
+    payload: IFindGameItem
+}
+interface GetGameFailAction {
+    type: GameActionType.GET_GAME_FAIL
+    payload: string
+}
+
 export type GameAction =
     | GetAllGamesRequestAction
     | GetAllGamesSuccessAction
     | GetAllGamesFailAction
+    | GetGameRequestAction
+    | GetGameSuccessAction
+    | GetGameFailAction

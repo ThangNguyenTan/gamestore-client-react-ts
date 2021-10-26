@@ -6,7 +6,14 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import { ToastContainer } from 'react-toastify'
 import { NavigationBar } from './components'
-import { SignUpPage, SignInPage, BrowsePage } from './pages'
+import {
+    SignUpPage,
+    SignInPage,
+    BrowsePage,
+    GameDetailsPage,
+    LogoutPage,
+    LibraryPage,
+} from './pages'
 
 const App: React.FC = () => {
     return (
@@ -19,6 +26,16 @@ const App: React.FC = () => {
                             <Route exact path="/" component={BrowsePage} />
                             <Route
                                 exact
+                                path="/library"
+                                component={LibraryPage}
+                            />
+                            <Route
+                                exact
+                                path="/logout"
+                                component={LogoutPage}
+                            />
+                            <Route
+                                exact
                                 path="/signup"
                                 component={SignUpPage}
                             />
@@ -26,6 +43,11 @@ const App: React.FC = () => {
                                 exact
                                 path="/signin"
                                 component={SignInPage}
+                            />
+                            <Route
+                                exact
+                                path="/games/details/:gameId"
+                                component={GameDetailsPage}
                             />
                         </Switch>
                     </Container>
