@@ -54,18 +54,20 @@ const LibraryPage: FC = () => {
                 <Col lg={3} md={4} sm={6} key={game.id}>
                     <Link
                         to={`/games/details/${game.id}`}
-                        className="game-item"
+                        className="game-item library"
                     >
-                        <div className="game-item__poster library">
+                        <div className="game-item__poster">
                             <img
                                 src={game.gamePoster}
                                 alt={game.gameName}
                                 className="img-fluid"
                             />
                         </div>
-                        <h4 className="game-item__name library">
-                            {game.gameName}
-                        </h4>
+                        <h4 className="game-item__name">{game.gameName}</h4>
+                        <h5 className="game-item__meta">
+                            {game.DeveloperInstance.developerName} |{' '}
+                            {game.PublisherInstance.publisherName}
+                        </h5>
                     </Link>
                 </Col>
             )

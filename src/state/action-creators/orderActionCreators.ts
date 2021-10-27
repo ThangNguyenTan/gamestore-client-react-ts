@@ -7,6 +7,7 @@ import { IFindGameItem, IOrderList } from '../../interfaces'
 import {
     createAuthorizedRequestHeader,
     getErrorMessageFromResponse,
+    mainOrdersURL,
 } from '../../utils'
 
 export const checkInLibrary = (gameId: number) => {
@@ -31,7 +32,7 @@ export const checkInLibrary = (gameId: number) => {
             }
 
             const res: AxiosResponse<boolean> = await axios.get(
-                `${process.env.REACT_APP_API_URL}/orders/check/${gameId}`,
+                `${mainOrdersURL()}/check/${gameId}`,
                 {
                     headers: {
                         Authorization: createAuthorizedRequestHeader(
@@ -67,7 +68,7 @@ export const getLibrary = () => {
             const { currentUser } = authReducer
 
             const res: AxiosResponse<IOrderList> = await axios.get(
-                `${process.env.REACT_APP_API_URL}/orders`,
+                `${mainOrdersURL()}`,
                 {
                     headers: {
                         Authorization: createAuthorizedRequestHeader(
@@ -103,7 +104,7 @@ export const payOrder = (game: IFindGameItem, paymentResult: any) => {
             const { currentUser } = authReducer
 
             const res: AxiosResponse<boolean> = await axios.post(
-                `${process.env.REACT_APP_API_URL}/orders/pay`,
+                `${mainOrdersURL()}/pay`,
                 {
                     gameItem: game,
                     paymentResult,

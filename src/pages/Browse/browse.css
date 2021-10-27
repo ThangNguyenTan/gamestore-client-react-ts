@@ -51,7 +51,7 @@
     border-radius: 5px;
 }
 
-.game-item__poster.library {
+.game-item.library .game-item__poster {
     height: 350px;
 }
 
@@ -83,7 +83,7 @@
     color: #FFF;
 }
 
-.game-item__name.library {
+.game-item.library .game-item__name {
     font-size: 1.2rem;
 }
 
@@ -94,6 +94,10 @@
     text-overflow: ellipsis;
     color: #8a8a8a;
     text-decoration: none;
+}
+
+.game-item.library .game-item__meta {
+    font-size: 1.2rem;
 }
 
 .game-item__price {
