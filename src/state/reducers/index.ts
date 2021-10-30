@@ -10,6 +10,10 @@ import authReducer from './authReducer'
 import payOrderReducer from './payOrderReducer'
 import getLibraryReducer from './getLibraryReducer'
 import checkInLibraryReducer from './checkInLibraryReducer'
+import getAllWishlistReducer from './getAllWishlistReducer'
+import createWishlistReducer from './createWishlistReducer'
+import removeWishlistReducer from './removeWishlistReducer'
+import checkInWishlistReducer from './checkInWishlistReducer'
 
 const reducers = combineReducers({
     authReducer,
@@ -23,6 +27,10 @@ const reducers = combineReducers({
     payOrderReducer,
     getLibraryReducer,
     checkInLibraryReducer,
+    getAllWishlistReducer,
+    createWishlistReducer,
+    removeWishlistReducer,
+    checkInWishlistReducer,
 })
 
 export default reducers

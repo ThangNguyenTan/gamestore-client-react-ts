@@ -6,17 +6,17 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../state'
 import { RootState } from '../../state/reducers'
 
-const LibraryPage: FC = () => {
+const WishlistPage: FC = () => {
     const dispatch = useDispatch()
 
-    const { loading, error, orders } = useSelector(
-        (state: RootState) => state.getLibraryReducer
+    const { loading, error, wishlists } = useSelector(
+        (state: RootState) => state.getAllWishlistReducer
     )
 
-    const { getLibrary } = bindActionCreators(actionCreators, dispatch)
+    const { getAllWishlist } = bindActionCreators(actionCreators, dispatch)
 
     useEffect(() => {
-        getLibrary()
+        getAllWishlist()
     }, [])
 
     const renderGameItems = (): JSX.Element | JSX.Element[] => {
@@ -36,7 +36,7 @@ const LibraryPage: FC = () => {
             )
         }
 
-        if (orders.length === 0) {
+        if (wishlists.length === 0) {
             return (
                 <div className="ml-auto mr-auto text-center">
                     <h4>Oops, you do not have any games right now</h4>
@@ -47,8 +47,8 @@ const LibraryPage: FC = () => {
             )
         }
 
-        return orders.map((order) => {
-            const { GameInstance: game } = order
+        return wishlists.map((wishlist) => {
+            const { GameInstance: game } = wishlist
 
             return (
                 <Col lg={3} md={4} sm={6} key={game.id}>
@@ -82,4 +82,4 @@ const LibraryPage: FC = () => {
     )
 }
 
-export default LibraryPage
+export default WishlistPage

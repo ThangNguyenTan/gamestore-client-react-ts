@@ -13,6 +13,7 @@ import {
     GameDetailsPage,
     LogoutPage,
     LibraryPage,
+    WishlistPage,
 } from './pages'
 
 const App: React.FC = () => {
@@ -28,6 +29,11 @@ const App: React.FC = () => {
                                 exact
                                 path="/library"
                                 component={LibraryPage}
+                            />
+                            <Route
+                                exact
+                                path="/wishlist"
+                                component={WishlistPage}
                             />
                             <Route
                                 exact

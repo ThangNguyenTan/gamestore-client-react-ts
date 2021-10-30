@@ -68,7 +68,7 @@ export const getLibrary = () => {
             const { currentUser } = authReducer
 
             const res: AxiosResponse<IOrderList> = await axios.get(
-                `${mainOrdersURL()}`,
+                `${mainOrdersURL()}/mine`,
                 {
                     headers: {
                         Authorization: createAuthorizedRequestHeader(

@@ -31,3 +31,7 @@ export const singleGameURL = (id: number | string): string =>
 export const mainOrdersURL = (): string => `${MAIN_API_URL}/orders`
 export const singleOrderURL = (id: number | string): string =>
     `${MAIN_API_URL}/orders/${id}`
+
+export const mainWishlistURL = (): string => `${MAIN_API_URL}/wishlist`
+export const singleWishlistURL = (id: number | string): string =>
+    `${MAIN_API_URL}/wishlist/${id}`

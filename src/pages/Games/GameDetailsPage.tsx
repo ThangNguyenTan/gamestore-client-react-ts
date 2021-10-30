@@ -16,6 +16,8 @@ const GameDetailsPage: FC = () => {
     const { gameId } = useParams<{ gameId: string }>()
 
     const [isVisible, setIsVisible] = useState(false)
+    const [isCreateSubmitted, setCreateIsSubmitted] = useState(false)
+    const [isRemoveSubmitted, setRemoveIsSubmitted] = useState(false)
 
     const { currentUser } = useSelector((state: RootState) => state.authReducer)
     const { game, loading, error } = useSelector(
@@ -26,16 +28,62 @@ const GameDetailsPage: FC = () => {
         loading: isInLibraryLoading,
         error: isInLibraryError,
     } = useSelector((state: RootState) => state.checkInLibraryReducer)
+    const {
+        isInWishlist: availableWishlistItem,
+        loading: isInWishlistLoading,
+        error: isInWishlistError,
+    } = useSelector((state: RootState) => state.checkInWishlistReducer)
+    const {
+        loading: createWishlistLoading,
+        error: createWishlistError,
+    } = useSelector((state: RootState) => state.createWishlistReducer)
+    const {
+        loading: removeWishlistLoading,
+        error: removeWishlistError,
+    } = useSelector((state: RootState) => state.removeWishlistReducer)
 
-    const { getGame, checkInLibrary } = bindActionCreators(
-        actionCreators,
-        dispatch
-    )
+    const {
+        getGame,
+        checkInLibrary,
+        createWishlist,
+        removeWishlist,
+        checkInWishlist,
+    } = bindActionCreators(actionCreators, dispatch)
 
     useEffect(() => {
         getGame(gameId)
         checkInLibrary(parseInt(gameId, 10))
     }, [gameId])
+
+    useEffect(() => {
+        checkInWishlist(parseInt(gameId, 10))
+    }, [gameId, createWishlistLoading, removeWishlistLoading])
+
+    useEffect(() => {
+        if (isCreateSubmitted) {
+            if (!createWishlistLoading) {
+                if (createWishlistError) {
+                    createToast(createWishlistError, 'error')
+                } else {
+                    createToast('Added to your wishlist')
+                }
+                setCreateIsSubmitted(false)
+            }
+        }
+    }, [isCreateSubmitted, createWishlistLoading, createWishlistError])
+
+    useEffect(() => {
+        if (isRemoveSubmitted) {
+            if (!removeWishlistLoading) {
+                if (removeWishlistError) {
+                    createToast(removeWishlistError, 'error')
+                } else {
+                    createToast('Removed from your wishlist')
+                }
+                setRemoveIsSubmitted(false)
+            }
+        }
+    }, [isRemoveSubmitted, removeWishlistLoading, removeWishlistError])
 
     if (error) {
         createToast(error, 'error')
@@ -113,6 +161,62 @@ const GameDetailsPage: FC = () => {
         )
     }
 
+    const renderWishlistButton = (): JSX.Element => {
+        if (!currentUser) {
+            return <></>
+        }
+
+        if (isInWishlistError) {
+            return (
+                <button
+                    type="button"
+                    className="btn btn-outline-dark btn-block"
+                >
+                    {isInWishlistError}
+                </button>
+            )
+        }
+
+        if (isInWishlistLoading) {
+            return (
+                <button
+                    type="button"
+                    className="btn btn-outline-dark btn-block"
+                >
+                    Loading...
+                </button>
+            )
+        }
+
+        if (availableWishlistItem) {
+            return (
+                <button
+                    type="button"
+                    className="btn btn-outline-dark btn-block"
+                    onClick={() => {
+                        removeWishlist(availableWishlistItem.id!)
+                        setRemoveIsSubmitted(true)
+                    }}
+                >
+                    Remove from Wishlist
+                </button>
+            )
+        }
+
+        return (
+            <button
+                type="button"
+                className="btn btn-outline-dark btn-block"
+                onClick={() => {
+                    createWishlist(game)
+                    setCreateIsSubmitted(true)
+                }}
+            >
+                Add to Wishlist
+            </button>
+        )
+    }
+
     return (
         <>
             <h4 className="mb-4">{gameName}</h4>
@@ -171,14 +275,7 @@ const GameDetailsPage: FC = () => {
                     <div className="game-details__actions mb-2 mt-2">
                         {renderBuyNowButton()}
 
-                        {currentUser && (
-                            <button
-                                type="button"
-                                className="btn btn-outline-dark btn-block"
-                            >
-                                Add to Wishlist
-                            </button>
-                        )}
+                        {currentUser && renderWishlistButton()}
                     </div>
                     <div className="game-details__meta">
                         <ul>

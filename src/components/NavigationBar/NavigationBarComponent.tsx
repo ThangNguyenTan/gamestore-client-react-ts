@@ -22,6 +22,9 @@ const NavigationBarComponent: FC = () => {
                             <Link className="nav-link" to="/library">
                                 Library
                             </Link>
+                            <Link className="nav-link" to="/wishlist">
+                                Wishlist
+                            </Link>
                             <Link className="nav-link text-danger" to="/logout">
                                 Logout
                             </Link>
