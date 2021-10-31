@@ -76,7 +76,7 @@ const WishlistPage: FC = () => {
 
     return (
         <div>
-            <h3 className="mb-4">Your Library</h3>
+            <h3 className="mb-4">Your Wishlist</h3>
             <Row>{renderGameItems()}</Row>
         </div>
     )
